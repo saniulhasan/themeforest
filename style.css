@@ -9,31 +9,31 @@
 
 :root {
     --clr: #222327;
-    --indicator-color: #29fd53;
+    --bg: #f0f0f0;
 }
 
 body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    background: var(--clr);
+    background: var(--bg);
+    padding-top: 100px;
 }
 
 .navigation {
-    width: 400px;
+    position: fixed;
+    top: 35px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%; /* Increased width to accommodate the new menu item */
+    height: 70px;
     background: #fff;
-    position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
     border-radius: 10px;
-    overflow: visible;
 }
 
 .navigation ul {
     display: flex;
-    width: 350px;
+    width: 420px; /* Increased width to match the new navigation width */
 }
 
 .navigation ul li {
@@ -90,7 +90,7 @@ body {
     top: -50%;
     width: 70px;
     height: 70px;
-    background: var(--indicator-color);
+    background: #29fd53;
     border-radius: 50%;
     border: 6px solid var(--clr);
     transition: 0.5s;
@@ -140,37 +140,94 @@ body {
     transform: translateX(calc(70px * 4));
 }
 
-/* Dropdown styles */
-.dropdown {
+.navigation ul li:nth-child(6).active ~ .indicator { /* Added for the new menu item */
+    transform: translateX(calc(70px * 5));
+}
+
+/* Megamenu styles */
+.megamenu {
     position: absolute;
-    top: 80px;
-    left: 50%;
+    top: 100%;
+    left: 0;
     transform: translateX(-50%);
-    width: 200px;
     background: #fff;
+    width: 800px; /* Reduced width as we now have only two columns */
+    padding: 20px;
     border-radius: 10px;
-    overflow: hidden;
-    visibility: hidden;
-    opacity: 0;
-    transition: 0.3s;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    opacity: 0;
+    visibility: hidden;
+    transition: 0.3s;
 }
 
-.navigation ul li.active .dropdown {
-    visibility: visible;
+.has-megamenu:hover .megamenu {
     opacity: 1;
-    transform: translate(-50%, 0);
+    visibility: visible;
 }
 
-.dropdown a {
-    display: block;
-    padding: 10px;
+.megamenu-content {
+    display: flex;
+    justify-content: space-between;
+}
+
+.megamenu-column {
+    flex: 1;
+    padding: 0 10px;
+}
+
+.megamenu-column h3 {
     color: var(--clr);
+    font-size: 1em;
+    margin-bottom: 10px;
+}
+
+.megamenu-column ul {
+    list-style: none;
+}
+
+.megamenu-column ul li {
+    margin-bottom: 5px;
+}
+
+.megamenu-column ul li a {
+    color: var(--clr);
+    font-size: 0.9em;
     text-decoration: none;
     transition: 0.3s;
 }
 
-.dropdown a:hover {
-    background: var(--indicator-color);
-    color: #fff;
+.megamenu-column ul li a:hover {
+    color: #29fd53;
 }
+
+@media (max-width: 768px) {
+    .navigation {
+        width: 100%;
+        border-radius: 0;
+    }
+
+    .navigation ul {
+        width: 100%;
+        justify-content: space-around;
+    }
+
+    .navigation ul li {
+        width: auto;
+        flex: 1;
+    }
+
+    .megamenu {
+        width: 100%;
+        left: 0;
+        transform: none;
+    }
+
+    .megamenu-content {
+        flex-direction: column;
+    }
+
+    .megamenu-column {
+        margin-bottom: 20px;
+    }
+}
+
