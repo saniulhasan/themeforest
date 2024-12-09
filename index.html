@@ -1,77 +1,93 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Top Navigation Menu with Megamenu</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Magic Menu Indicator with Megamenu and Profile Dropdown</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
-    <nav class="navigation">
-        <ul>
-    <li class="list active">
-        <a href="#">
-            <span class="icon"><ion-icon name="home-outline"></ion-icon></span>
-            <span class="text">Home</span>
-        </a>
-    </li>
-    <li class="list">
-        <a href="#">
-            <span class="icon"><ion-icon name="person-outline"></ion-icon></span>
-            <span class="text">Profile</span>
-        </a>
-    </li>
-    <li class="list">
-        <a href="#">
-            <span class="icon"><ion-icon name="chatbubble-outline"></ion-icon></span>
-            <span class="text">Messages</span>
-        </a>
-    </li>
-    <li class="list">
-        <a href="#">
-            <span class="icon"><ion-icon name="camera-outline"></ion-icon></span>
-            <span class="text">Photos</span>
-        </a>
-    </li>
-    <li class="list has-megamenu">
-        <a href="#" class="megamenu-trigger">
-            <span class="icon"><ion-icon name="settings-outline"></ion-icon></span>
-            <span class="text">Settings</span>
-        </a>
-        <div class="megamenu">
-            <div class="megamenu-content">
-                <div class="megamenu-column">
-                    <h3>Account Settings</h3>
-                    <ul>
-                        <li><a href="#">Profile Information</a></li>
-                        <li><a href="#">Password & Security</a></li>
-                        <li><a href="#">Linked Accounts</a></li>
-                    </ul>
-                </div>
-                <div class="megamenu-column">
-                    <h3>Preferences</h3>
-                    <ul>
-                        <li><a href="#">Language</a></li>
-                        <li><a href="#">Notifications</a></li>
-                        <li><a href="#">Privacy</a></li>
-                    </ul>
-                </div>
+    <div class="mainnav">
+        <div class="logo">
+            <h2>ofoifwno</h2>
+        </div>
+        <div class="navigation">
+            <ul>
+                <li class="list active">
+                    <a href="#">
+                        <span class="icon"><ion-icon name="home-outline"></ion-icon></span>
+                        <span class="text">Home</span>
+                    </a>
+                </li>
+                <li class="list">
+                    <a href="#">
+                        <span class="icon"><ion-icon name="person-outline"></ion-icon></span>
+                        <span class="text">Profile</span>
+                    </a>
+                </li>
+                <li class="list">
+                    <a href="#">
+                        <span class="icon"><ion-icon name="chatbubble-outline"></ion-icon></span>
+                        <span class="text">Messages</span>
+                    </a>
+                </li>
+                <li class="list">
+                    <a href="#">
+                        <span class="icon"><ion-icon name="camera-outline"></ion-icon></span>
+                        <span class="text">Photos</span>
+                    </a>
+                </li>
+                <li class="list" id="settings-menu">
+                    <a href="#">
+                        <span class="icon"><ion-icon name="settings-outline"></ion-icon></span>
+                        <span class="text">Settings</span>
+                    </a>
+                    <div class="megamenu">
+                        <div class="megamenu-content">
+                            <div class="megamenu-column">
+                                <h3>Account Settings</h3>
+                                <ul>
+                                    <li><a href="#">Profile</a></li>
+                                    <li><a href="#">Security</a></li>
+                                    <li><a href="#">Notifications</a></li>
+                                </ul>
+                            </div>
+                            <div class="megamenu-column">
+                                <h3>App Settings</h3>
+                                <ul>
+                                    <li><a href="#">Appearance</a></li>
+                                    <li><a href="#">Language</a></li>
+                                    <li><a href="#">Privacy</a></li>
+                                </ul>
+                            </div>
+                            <div class="megamenu-column">
+                                <h3>Help & Support</h3>
+                                <ul>
+                                    <li><a href="#">FAQs</a></li>
+                                    <li><a href="#">Contact Us</a></li>
+                                    <li><a href="#">Feedback</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <div class="indicator"></div>
+            </ul>
+        </div>
+        <div class="profile-dropdown">
+            <button id="profile-toggle" aria-haspopup="true" aria-expanded="false">
+                <img src="https://placekitten.com/40/40" alt="Profile" class="profile-image">
+            </button>
+            <div class="dropdown-menu" aria-labelledby="profile-toggle">
+                <a href="#" class="dropdown-item">My Profile</a>
+                <a href="#" class="dropdown-item">Account Settings</a>
+                <a href="#" class="dropdown-item">Help Center</a>
+                <div class="dropdown-divider"></div>
+                <a href="#" class="dropdown-item">Sign Out</a>
             </div>
         </div>
-    </li>
-    <li class="list">
-        <a href="#">
-            <span class="icon"><ion-icon name="help-circle-outline"></ion-icon></span>
-            <span class="text">Help</span>
-        </a>
-    </li>
-    <div class="indicator"></div>
-</ul>
-    </nav>
-
+    </div>
+    <script src="main.js"></script>
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
-    <script src="main.js"></script>
 </body>
 </html>
 
