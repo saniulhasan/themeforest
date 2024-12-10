@@ -1,15 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Magic Menu Indicator with Megamenu and Profile Dropdown</title>
+    <meta name="description" content="A responsive navigation menu with magic indicator, megamenu, and profile dropdown">
     <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
-    <div class="mainnav">
+    <!-- Start Header -->
+    <header class="mainnav">
+        <!-- Start Logo -->
         <div class="logo">
             <h2>ofoifwno</h2>
         </div>
-        <div class="navigation">
+        <!-- End Logo -->
+
+        <!-- Start Navigation -->
+        <nav class="navigation">
             <ul>
                 <li class="list active">
                     <a href="#">
@@ -40,6 +48,7 @@
                         <span class="icon"><ion-icon name="settings-outline"></ion-icon></span>
                         <span class="text">Settings</span>
                     </a>
+                    <!-- Start Megamenu -->
                     <div class="megamenu">
                         <div class="megamenu-content">
                             <div class="megamenu-column">
@@ -68,10 +77,14 @@
                             </div>
                         </div>
                     </div>
+                    <!-- End Megamenu -->
                 </li>
                 <div class="indicator"></div>
             </ul>
-        </div>
+        </nav>
+        <!-- End Navigation -->
+
+        <!-- Start Profile Dropdown -->
         <div class="profile-dropdown">
             <button id="profile-toggle" aria-haspopup="true" aria-expanded="false">
                 <img src="https://placekitten.com/40/40" alt="Profile" class="profile-image">
@@ -84,10 +97,326 @@
                 <a href="#" class="dropdown-item">Sign Out</a>
             </div>
         </div>
-    </div>
+        <!-- End Profile Dropdown -->
+    </header>
+    <main>
+        <section class="hero">
+            <div class="container">
+                <h1>Discover, Collect, and Sell Extraordinary NFTs</h1>
+                <p>Explore the world's best NFT marketplace</p>
+                <a href="#" class="btn btn-primary">Explore</a>
+            </div>
+        </section>
+
+        <section class="featured-nfts">
+            <div class="container">
+                <h2>Featured NFTs</h2>
+                <div class="nft-grid">
+                    <!-- NFT Card 1 -->
+                    <div class="nft-card">
+                        <img src="https://placeholder.com/300x300" alt="NFT 1" class="nft-image">
+                        <div class="nft-info">
+                            <h3>Cosmic Harmony #1</h3>
+                            <p>by Artist Name</p>
+                            <div class="nft-price">
+                                <span>Current Bid</span>
+                                <strong>2.5 ETH</strong>
+                            </div>
+                            <a href="#" class="btn btn-secondary">Place Bid</a>
+                        </div>
+                    </div>
+                    <!-- NFT Card 2 -->
+                    <div class="nft-card">
+                        <img src="https://placeholder.com/300x300" alt="NFT 2" class="nft-image">
+                        <div class="nft-info">
+                            <h3>Digital Dreams #42</h3>
+                            <p>by Creator XYZ</p>
+                            <div class="nft-price">
+                                <span>Current Bid</span>
+                                <strong>1.8 ETH</strong>
+                            </div>
+                            <a href="#" class="btn btn-secondary">Place Bid</a>
+                        </div>
+                    </div>
+                    <!-- NFT Card 3 -->
+                    <div class="nft-card">
+                        <img src="https://placeholder.com/300x300" alt="NFT 3" class="nft-image">
+                        <div class="nft-info">
+                            <h3>Neon Nights #7</h3>
+                            <p>by Crypto Artist</p>
+                            <div class="nft-price">
+                                <span>Current Bid</span>
+                                <strong>3.2 ETH</strong>
+                            </div>
+                            <a href="#" class="btn btn-secondary">Place Bid</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="cta">
+            <div class="container">
+                <h2>Ready to Start Your NFT Journey?</h2>
+                <p>Join thousands of artists and collectors in the world of digital art.</p>
+                <a href="#" class="btn btn-primary">Create Account</a>
+            </div>
+        </section>
+        <section class="newest-items">
+            <div class="container">
+                <h2>Newest Items</h2>
+                <div class="nft-grid">
+                    <div class="nft-card">
+                        <img src="https://placeholder.com/300x300" alt="New NFT 1" class="nft-image">
+                        <div class="nft-info">
+                            <h3>Cyber Punk #99</h3>
+                            <p>by Digital Artist</p>
+                            <div class="nft-price">
+                                <span>Price</span>
+                                <strong>1.5 ETH</strong>
+                            </div>
+                            <a href="#" class="btn btn-secondary">View Item</a>
+                        </div>
+                    </div>
+                    <div class="nft-card">
+                        <img src="https://placeholder.com/300x300" alt="New NFT 2" class="nft-image">
+                        <div class="nft-info">
+                            <h3>Abstract Realm #12</h3>
+                            <p>by Modern Creator</p>
+                            <div class="nft-price">
+                                <span>Price</span>
+                                <strong>2.0 ETH</strong>
+                            </div>
+                            <a href="#" class="btn btn-secondary">View Item</a>
+                        </div>
+                    </div>
+                    <div class="nft-card">
+                        <img src="https://placeholder.com/300x300" alt="New NFT 3" class="nft-image">
+                        <div class="nft-info">
+                            <h3>Galactic Wonder #5</h3>
+                            <p>by Space Artist</p>
+                            <div class="nft-price">
+                                <span>Price</span>
+                                <strong>1.8 ETH</strong>
+                            </div>
+                            <a href="#" class="btn btn-secondary">View Item</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    
+        <section class="live-bidding">
+            <div class="container">
+                <h2>Live Bidding</h2>
+                <div class="nft-grid">
+                    <div class="nft-card">
+                        <img src="https://placeholder.com/300x300" alt="Live NFT 1" class="nft-image">
+                        <div class="nft-info">
+                            <h3>Ethereal Essence #7</h3>
+                            <p>by Mystic Creator</p>
+                            <div class="nft-price">
+                                <span>Current Bid</span>
+                                <strong>3.2 ETH</strong>
+                            </div>
+                            <div class="live-timer">05:23:11</div>
+                            <a href="#" class="btn btn-secondary">Place Bid</a>
+                        </div>
+                    </div>
+                    <div class="nft-card">
+                        <img src="https://placeholder.com/300x300" alt="Live NFT 2" class="nft-image">
+                        <div class="nft-info">
+                            <h3>Digital Dynasty #18</h3>
+                            <p>by Pixel Master</p>
+                            <div class="nft-price">
+                                <span>Current Bid</span>
+                                <strong>2.7 ETH</strong>
+                            </div>
+                            <div class="live-timer">01:15:32</div>
+                            <a href="#" class="btn btn-secondary">Place Bid</a>
+                        </div>
+                    </div>
+                    <div class="nft-card">
+                        <img src="https://placeholder.com/300x300" alt="Live NFT 3" class="nft-image">
+                        <div class="nft-info">
+                            <h3>Neon Nightscape #3</h3>
+                            <p>by Urban Legend</p>
+                            <div class="nft-price">
+                                <span>Current Bid</span>
+                                <strong>4.5 ETH</strong>
+                            </div>
+                            <div class="live-timer">00:45:59</div>
+                            <a href="#" class="btn btn-secondary">Place Bid</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    
+        <section class="top-sellers">
+            <div class="container">
+                <h2>Top Sellers in 1 Day</h2>
+                <div class="seller-grid">
+                    <div class="seller-item">
+                        <img src="https://placeholder.com/80x80" alt="Seller 1" class="seller-avatar">
+                        <h3 class="seller-name">CryptoKing</h3>
+                        <p class="seller-sales">50 ETH</p>
+                    </div>
+                    <div class="seller-item">
+                        <img src="https://placeholder.com/80x80" alt="Seller 2" class="seller-avatar">
+                        <h3 class="seller-name">PixelQueen</h3>
+                        <p class="seller-sales">45 ETH</p>
+                    </div>
+                    <div class="seller-item">
+                        <img src="https://placeholder.com/80x80" alt="Seller 3" class="seller-avatar">
+                        <h3 class="seller-name">ArtMaster</h3>
+                        <p class="seller-sales">40 ETH</p>
+                    </div>
+                    <div class="seller-item">
+                        <img src="https://placeholder.com/80x80" alt="Seller 4" class="seller-avatar">
+                        <h3 class="seller-name">NFTWizard</h3>
+                        <p class="seller-sales">38 ETH</p>
+                    </div>
+                    <div class="seller-item">
+                        <img src="https://placeholder.com/80x80" alt="Seller 5" class="seller-avatar">
+                        <h3 class="seller-name">DigitalDiva</h3>
+                        <p class="seller-sales">35 ETH</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="top-collections">
+            <div class="container">
+                <h2>Top Collections</h2>
+                <div class="collection-grid">
+                    <div class="collection-card">
+                        <div class="collection-header">
+                            <img src="https://placeholder.com/100x100" alt="Collection 1" class="collection-avatar">
+                            <h3>Bored Ape Yacht Club</h3>
+                        </div>
+                        <div class="collection-stats">
+                            <div class="stat">
+                                <span class="stat-label">Floor Price</span>
+                                <span class="stat-value">80 ETH</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-label">Volume</span>
+                                <span class="stat-value">15,000 ETH</span>
+                            </div>
+                        </div>
+                        <div class="collection-items">
+                            <img src="https://placeholder.com/80x80" alt="Item 1" class="collection-item">
+                            <img src="https://placeholder.com/80x80" alt="Item 2" class="collection-item">
+                            <img src="https://placeholder.com/80x80" alt="Item 3" class="collection-item">
+                            <div class="collection-item-more">+</div>
+                        </div>
+                    </div>
+                    <div class="collection-card">
+                        <div class="collection-header">
+                            <img src="https://placeholder.com/100x100" alt="Collection 2" class="collection-avatar">
+                            <h3>CryptoPunks</h3>
+                        </div>
+                        <div class="collection-stats">
+                            <div class="stat">
+                                <span class="stat-label">Floor Price</span>
+                                <span class="stat-value">65 ETH</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-label">Volume</span>
+                                <span class="stat-value">12,500 ETH</span>
+                            </div>
+                        </div>
+                        <div class="collection-items">
+                            <img src="https://placeholder.com/80x80" alt="Item 1" class="collection-item">
+                            <img src="https://placeholder.com/80x80" alt="Item 2" class="collection-item">
+                            <img src="https://placeholder.com/80x80" alt="Item 3" class="collection-item">
+                            <div class="collection-item-more">+</div>
+                        </div>
+                    </div>
+                    <div class="collection-card">
+                        <div class="collection-header">
+                            <img src="https://placeholder.com/100x100" alt="Collection 3" class="collection-avatar">
+                            <h3>Art Blocks Curated</h3>
+                        </div>
+                        <div class="collection-stats">
+                            <div class="stat">
+                                <span class="stat-label">Floor Price</span>
+                                <span class="stat-value">2.5 ETH</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-label">Volume</span>
+                                <span class="stat-value">8,000 ETH</span>
+                            </div>
+                        </div>
+                        <div class="collection-items">
+                            <img src="https://placeholder.com/80x80" alt="Item 1" class="collection-item">
+                            <img src="https://placeholder.com/80x80" alt="Item 2" class="collection-item">
+                            <img src="https://placeholder.com/80x80" alt="Item 3" class="collection-item">
+                            <div class="collection-item-more">+</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <!-- End Main Content -->
+
+    <!-- Start Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>NFT Marketplace</h3>
+                    <p>Discover, collect, and sell extraordinary NFTs</p>
+                </div>
+                <div class="footer-column">
+                    <h4>Marketplace</h4>
+                    <ul>
+                        <li><a href="#">All NFTs</a></li>
+                        <li><a href="#">Art</a></li>
+                        <li><a href="#">Music</a></li>
+                        <li><a href="#">Virtual Worlds</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>My Account</h4>
+                    <ul>
+                        <li><a href="#">Profile</a></li>
+                        <li><a href="#">Favorites</a></li>
+                        <li><a href="#">Watchlist</a></li>
+                        <li><a href="#">My Collections</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">Partners</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Newsletter</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 NFT Marketplace. All rights reserved.</p>
+                <div class="social-links">
+                    <a href="#" aria-label="Twitter"><ion-icon name="logo-twitter"></ion-icon></a>
+                    <a href="#" aria-label="Facebook"><ion-icon name="logo-facebook"></ion-icon></a>
+                    <a href="#" aria-label="Instagram"><ion-icon name="logo-instagram"></ion-icon></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <button id="scrollToTopBtn" aria-label="Scroll to top">
+        <ion-icon name="arrow-up-outline"></ion-icon>
+    </button>
+    <!-- End Footer -->
+
+    <!-- Start Scripts -->
     <script src="main.js"></script>
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <!-- End Scripts -->
 </body>
 </html>
-
