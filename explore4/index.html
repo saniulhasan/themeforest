@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NexaCrypto Exchange</title>
+    <style>
+        :root {
+            --bg-color: #0a0e17;
+            --card-bg: rgba(255, 255, 255, 0.05);
+            --text-color: #e2e8f0;
+            --primary-color: #6d28d9;
+            --secondary-color: #2dd4bf;
+            --accent-color: #f472b6;
+            --success-color: #22c55e;
+            --danger-color: #ef4444;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .search-container {
+            display: flex;
+            margin-bottom: 1rem;
+        }
+
+        #crypto-search {
+            flex-grow: 1;
+            padding: 0.5rem;
+            border: none;
+            border-radius: 5px 0 0 5px;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: var(--text-color);
+        }
+
+        #search-btn {
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 0 5px 5px 0;
+            background-color: var(--primary-color);
+            color: var(--text-color);
+            cursor: pointer;
+        }
+
+        .crypto-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+
+        .crypto-item {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 1rem;
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        .crypto-item h3 {
+            margin-bottom: 0.5rem;
+        }
+
+        .price {
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+
+        .change {
+            font-size: 0.9rem;
+        }
+
+        .positive {
+            color: var(--success-color);
+        }
+
+        .negative {
+            color: var(--danger-color);
+        }
+
+        .chart-container {
+            position: relative;
+        }
+
+        #crypto-chart {
+            width: 100%;
+            height: 400px;
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 5px;
+        }
+
+        .chart-filters {
+            display: flex;
+            justify-content: center;
+            margin-top: 1rem;
+        }
+
+        .chart-filters button {
+            margin: 0 0.5rem;
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 5px;
+            background-color: var(--card-bg);
+            color: var(--text-color);
+            cursor: pointer;
+        }
+
+        .chart-filters button.active {
+            background-color: var(--primary-color);
+        }
+
+        .trade-options {
+            display: flex;
+            justify-content: center;
+            margin-top: 1rem;
+        }
+
+        .trade-options button {
+            margin: 0 0.5rem;
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 5px;
+            background-color: var(--card-bg);
+            color: var(--text-color);
+            cursor: pointer;
+        }
+
+        .trade-actions {
+            display: flex;
+            justify-content: center;
+            margin-top: 1rem;
+        }
+
+        .trade-actions button {
+            margin: 0 0.5rem;
+            padding: 0.5rem 2rem;
+            border: none;
+            border-radius: 5px;
+            color: var(--text-color);
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        #buy-btn {
+            background-color: var(--success-color);
+        }
+
+        #sell-btn {
+            background-color: var(--danger-color);
+        }
+
+        .market-data {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 0.5rem;
+            text-align: left;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        th {
+            background-color: rgba(255, 255, 255, 0.05);
+        }
+
+        @media (max-width: 768px) {
+            .market-data {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>NexaCrypto Exchange</h1>
+        </header>
+        <main>
+            <section class="card">
+                <div class="search-container">
+                    <input type="text" id="crypto-search" placeholder="Search cryptocurrencies...">
+                    <button id="search-btn">Search</button>
+                </div>
+                <div class="crypto-list" id="crypto-list"></div>
+            </section>
+            <section class="card">
+                <div class="chart-container">
+                    <canvas id="crypto-chart"></canvas>
+                    <div class="chart-filters">
+                        <button class="active" data-filter="1h">1H</button>
+                        <button data-filter="1d">1D</button>
+                        <button data-filter="1w">1W</button>
+                        <button data-filter="1m">1M</button>
+                        <button data-filter="1y">1Y</button>
+                    </div>
+                </div>
+                <div class="trade-options">
+                    <button class="active" data-type="limit">Limit</button>
+                    <button data-type="market">Market</button>
+                    <button data-type="stop-limit">Stop Limit</button>
+                    <button data-type="stop-market">Stop Market</button>
+                </div>
+                <div class="trade-actions">
+                    <button id="buy-btn">Buy</button>
+                    <button id="sell-btn">Sell</button>
+                </div>
+            </section>
+            <section class="market-data">
+                <div class="card">
+                    <h2>Order Book</h2>
+                    <table id="order-book">
+                        <thead>
+                            <tr>
+                                <th>Price (BTC)</th>
+                                <th>Amount (ETH)</th>
+                                <th>Total (ETH)</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+                <div class="card">
+                    <h2>Recent Trades</h2>
+                    <table id="recent-trades">
+                        <thead>
+                            <tr>
+                                <th>Time</th>
+                                <th>Price (BTC)</th>
+                                <th>Amount (ETH)</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </section>
+        </main>
+    </div>
+    <script>
+        // Sample data
+        const cryptoData = [
+            { pair: 'BTC/USDT', price: 50000, change: 2.5 },
+            { pair: 'ETH/USDT', price: 3000, change: -1.2 },
+            { pair: 'ADA/USDT', price: 2, change: 5.7 },
+            { pair: 'DOT/USDT', price: 30, change: 3.8 },
+            { pair: 'XRP/USDT', price: 1.5, change: -0.5 },
+        ];
+
+        const orderBookData = [
+            { price: 0.06, amount: 10, total: 0.6 },
+            { price: 0.059, amount: 15, total: 0.885 },
+            { price: 0.058, amount: 20, total: 1.16 },
+            { price: 0.057, amount: 25, total: 1.425 },
+            { price: 0.056, amount: 30, total: 1.68 },
+        ];
+
+        const recentTradesData = [
+            { time: '14:30:45', price: 0.06, amount: 5 },
+            { time: '14:30:30', price: 0.059, amount: 8 },
+            { time: '14:30:15', price: 0.06, amount: 3 },
+            { time: '14:30:00', price: 0.058, amount: 12 },
+            { time: '14:29:45', price: 0.057, amount: 7 },
+        ];
+
+        // DOM elements
+        const cryptoList = document.getElementById('crypto-list');
+        const cryptoSearch = document.getElementById('crypto-search');
+        const searchBtn = document.getElementById('search-btn');
+        const chartFilters = document.querySelectorAll('.chart-filters button');
+        const tradeOptions = document.querySelectorAll('.trade-options button');
+        const buyBtn = document.getElementById('buy-btn');
+        const sellBtn = document.getElementById('sell-btn');
+        const orderBookTable = document.getElementById('order-book').querySelector('tbody');
+        const recentTradesTable = document.getElementById('recent-trades').querySelector('tbody');
+
+        // Functions
+        function renderCryptoList(data) {
+            cryptoList.innerHTML = '';
+            data.forEach(crypto => {
+                const cryptoItem = document.createElement('div');
+                cryptoItem.className = 'crypto-item';
+                cryptoItem.innerHTML = `
+                    <h3>${crypto.pair}</h3>
+                    <div class="price">$${crypto.price.toFixed(2)}</div>
+                    <div class="change ${crypto.change >= 0 ? 'positive' : 'negative'}">
+                        ${crypto.change >= 0 ? '+' : ''}${crypto.change.toFixed(2)}%
+                    </div>
+                `;
+                cryptoList.appendChild(cryptoItem);
+            });
+        }
+
+        function renderOrderBook() {
+            orderBookTable.innerHTML = '';
+            orderBookData.forEach(order => {
+                const row = orderBookTable.insertRow();
+                row.innerHTML = `
+                    <td>${order.price.toFixed(3)}</td>
+                    <td>${order.amount.toFixed(2)}</td>
+                    <td>${order.total.toFixed(3)}</td>
+                `;
+            });
+        }
+
+        function renderRecentTrades() {
+            recentTradesTable.innerHTML = '';
+            recentTradesData.forEach(trade => {
+                const row = recentTradesTable.insertRow();
+                row.innerHTML = `
+                    <td>${trade.time}</td>
+                    <td>${trade.price.toFixed(3)}</td>
+                    <td>${trade.amount.toFixed(2)}</td>
+                `;
+            });
+        }
+
+        function drawChart() {
+            const canvas = document.getElementById('crypto-chart');
+            const ctx = canvas.getContext('2d');
+            const width = canvas.width;
+            const height = canvas.height;
+
+            ctx.clearRect(0, 0, width, height);
+            ctx.strokeStyle = '#2dd4bf';
+            ctx.lineWidth = 2;
+
+            ctx.beginPath();
+            for (let i = 0; i < width; i++) {
+                const x = i;
+                const y = height / 2 + Math.sin(i * 0.05) * 50 + Math.random() * 20;
+                if (i === 0) {
+                    ctx.moveTo(x, y);
+                } else {
+                    ctx.lineTo(x, y);
+                }
+            }
+            ctx.stroke();
+        }
+
+        // Event listeners
+        searchBtn.addEventListener('click', () => {
+            const searchTerm = cryptoSearch.value.toLowerCase();
+            const filteredData = cryptoData.filter(crypto => 
+                crypto.pair.toLowerCase().includes(searchTerm)
+            );
+            renderCryptoList(filteredData);
+        });
+
+        chartFilters.forEach(button => {
+            button.addEventListener('click', () => {
+                chartFilters.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+                drawChart(); // In a real app, you'd update the chart data based on the selected time frame
+            });
+        });
+
+        tradeOptions.forEach(button => {
+            button.addEventListener('click', () => {
+                tradeOptions.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+            });
+        });
+
+        buyBtn.addEventListener('click', () => {
+            alert('Buy order placed!');
+        });
+
+        sellBtn.addEventListener('click', () => {
+            alert('Sell order placed!');
+        });
+
+        // Initialize the page
+        renderCryptoList(cryptoData);
+        renderOrderBook();
+        renderRecentTrades();
+        drawChart();
+
+        // Simulate real-time updates
+        setInterval(() => {
+            cryptoData.forEach(crypto => {
+                crypto.price += (Math.random() - 0.5) * 100;
+                crypto.change = (Math.random() - 0.5) * 5;
+            });
+            renderCryptoList(cryptoData);
+
+            orderBookData.forEach(order => {
+                order.price += (Math.random() - 0.5) * 0.001;
+                order.amount += (Math.random() - 0.5) * 5;
+                order.total = order.price * order.amount;
+            });
+            renderOrderBook();
+
+            recentTradesData.unshift({
+                time: new Date().toLocaleTimeString(),
+                price: 0.06 + (Math.random() - 0.5) * 0.002,
+                amount: Math.floor(Math.random() * 20) + 1
+            });
+            recentTradesData.pop();
+            renderRecentTrades();
+
+            drawChart();
+        }, 5000);
+    </script>
+</body>
+</html>

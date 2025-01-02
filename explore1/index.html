@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crypto Exchange</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="container">
+        <section id="search-section">
+            <h2>Popular Cryptocurrencies</h2>
+            <input type="text" id="crypto-search" placeholder="Search cryptocurrencies...">
+            <table id="crypto-table">
+                <thead>
+                    <tr>
+                        <th>Pairs</th>
+                        <th>Last Price</th>
+                        <th>Change</th>
+                    </tr>
+                </thead>
+                <tbody id="crypto-body"></tbody>
+            </table>
+        </section>
+
+        <section id="chart-section">
+            <div id="chart-container">
+                <canvas id="crypto-chart"></canvas>
+            </div>
+            <div id="chart-filters">
+                <button class="time-filter" data-time="1h">1H</button>
+                <button class="time-filter" data-time="1d">1D</button>
+                <button class="time-filter" data-time="1w">1W</button>
+                <button class="time-filter" data-time="1m">1M</button>
+                <button class="time-filter" data-time="1y">1Y</button>
+            </div>
+            <div id="trade-options">
+                <button class="trade-type active" data-type="limit">Limit</button>
+                <button class="trade-type" data-type="market">Market</button>
+                <button class="trade-type" data-type="stop-limit">Stop Limit</button>
+                <button class="trade-type" data-type="stop-market">Stop Market</button>
+            </div>
+            <div id="trade-actions">
+                <button id="buy-btn">Buy</button>
+                <button id="sell-btn">Sell</button>
+            </div>
+        </section>
+
+        <section id="order-section">
+            <div id="order-book">
+                <h3>Order Book</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Price(BTC)</th>
+                            <th>Amount(ETH)</th>
+                            <th>Total(ETH)</th>
+                        </tr>
+                    </thead>
+                    <tbody id="order-body"></tbody>
+                </table>
+            </div>
+            <div id="recent-trades">
+                <h3>Recent Trades</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Time</th>
+                            <th>Price(BTC)</th>
+                            <th>Amount(ETH)</th>
+                        </tr>
+                    </thead>
+                    <tbody id="trades-body"></tbody>
+                </table>
+            </div>
+        </section>
+    </div>
+    <script src="main.js"></script>
+</body>
+</html>

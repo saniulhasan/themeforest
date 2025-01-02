@@ -1745,3 +1745,136 @@ body::-webkit-scrollbar-thumb:hover {
         grid-template-columns: 1fr;
     }
 }
+.hero1{
+    position: relative;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    background: linear-gradient(45deg, #1a1a2e, #16213e, #0f3460);
+    color: #fff;
+  }
+  
+  .hero-content {
+    text-align: center;
+    z-index: 1;
+  }
+  
+  .hero-title {
+    font-size: 3.5rem;
+    margin-bottom: 1rem;
+    opacity: 0;
+    animation: fadeInUp 1s ease forwards;
+  }
+  
+  .hero-subtitle {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    opacity: 0;
+    animation: fadeInUp 1s ease 0.5s forwards;
+  }
+  
+  .hero-cta {
+    opacity: 0;
+    animation: fadeInUp 1s ease 1s forwards;
+  }
+  
+  .btn {
+    display: inline-block;
+    padding: 12px 24px;
+    margin: 0 10px;
+    font-size: 1rem;
+    text-decoration: none;
+    border-radius: 50px;
+    transition: all 0.3s ease;
+  }
+  
+  .btn-primary {
+    background-color: #4CAF50;
+    color: white;
+  }
+  
+  .btn-secondary {
+    background-color: transparent;
+    color: white;
+    border: 2px solid white;
+  }
+  
+  .btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  .hero-cards {
+    position: absolute;
+    right: 5%;
+    display: flex;
+    gap: 20px;
+  }
+  
+  .nft-card {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    padding: 10px;
+    width: 200px;
+    backdrop-filter: blur(5px);
+    opacity: 0;
+    transform: translateY(50px);
+    animation: fadeInUp 1s ease forwards;
+    animation-delay: var(--delay);
+  }
+  
+  .nft-image {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+  }
+  
+  .nft-info {
+    margin-top: 10px;
+    text-align: center;
+  }
+  
+  .nft-info h3 {
+    font-size: 1rem;
+    margin-bottom: 5px;
+  }
+  
+  .nft-info p {
+    font-size: 0.9rem;
+    color: #4CAF50;
+  }
+  
+  #particles-js {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+  }
+  
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(50px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .hero-title {
+      font-size: 2.5rem;
+    }
+  
+    .hero-subtitle {
+      font-size: 1rem;
+    }
+  
+    .hero-cards {
+      display: none;
+    }
+  }

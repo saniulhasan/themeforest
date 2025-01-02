@@ -1,0 +1,105 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f0f0;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+section {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    margin-bottom: 20px;
+    padding: 20px;
+}
+
+h2, h3 {
+    color: #333;
+}
+
+input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+
+#chart-container {
+    height: 400px;
+    margin-bottom: 20px;
+}
+
+#chart-filters, #trade-options, #trade-actions {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+
+button {
+    padding: 10px 20px;
+    margin: 0 5px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.time-filter, .trade-type {
+    background-color: #f2f2f2;
+    color: #333;
+}
+
+.time-filter:hover, .trade-type:hover, .time-filter.active, .trade-type.active {
+    background-color: #333;
+    color: #fff;
+}
+
+#buy-btn, #sell-btn {
+    padding: 10px 30px;
+    font-size: 16px;
+}
+
+#buy-btn {
+    background-color: #4CAF50;
+    color: white;
+}
+
+#sell-btn {
+    background-color: #f44336;
+    color: white;
+}
+
+#buy-btn:hover, #sell-btn:hover {
+    opacity: 0.9;
+}
+
+#order-section {
+    display: flex;
+    justify-content: space-between;
+}
+
+#order-book, #recent-trades {
+    width: 48%;
+}

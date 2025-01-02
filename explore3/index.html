@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern Crypto Exchange</title>
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --text-color: #e2e8f0;
+            --primary-color: #8b5cf6;
+            --secondary-color: #22d3ee;
+            --success-color: #22c55e;
+            --danger-color: #ef4444;
+            --card-bg: rgba(30, 41, 59, 0.7);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, var(--bg-color), #1e293b);
+            color: var(--text-color);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 0.5rem;
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .live-prices {
+            display: flex;
+            overflow-x: auto;
+            gap: 1rem;
+            padding-bottom: 1rem;
+        }
+
+        .price-item {
+            flex: 0 0 auto;
+            background-color: rgba(51, 65, 85, 0.5);
+            padding: 1rem;
+            border-radius: 8px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .price-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .price-symbol {
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .price-value {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .price-change {
+            font-size: 0.9rem;
+        }
+
+        .positive {
+            color: var(--success-color);
+        }
+
+        .negative {
+            color: var(--danger-color);
+        }
+
+        .trading-section {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+        }
+
+        .chart-container {
+            flex: 1 1 60%;
+            min-width: 300px;
+        }
+
+        #trading-chart {
+            width: 100%;
+            height: 400px;
+            background-color: rgba(51, 65, 85, 0.5);
+            border-radius: 8px;
+        }
+
+        .order-form {
+            flex: 1 1 30%;
+            min-width: 250px;
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        input[type="number"] {
+            width: 100%;
+            padding: 0.5rem;
+            border: 1px solid #4b5563;
+            border-radius: 4px;
+            background-color: #1f2937;
+            color: var(--text-color);
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: var(--text-color);
+        }
+
+        .btn-success {
+            background-color: var(--success-color);
+            color: var(--text-color);
+        }
+
+        .btn-danger {
+            background-color: var(--danger-color);
+            color: var(--text-color);
+        }
+
+        .btn:hover {
+            opacity: 0.9;
+        }
+
+        .market-data {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+        }
+
+        .order-book, .recent-trades {
+            flex: 1 1 45%;
+            min-width: 300px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 0.5rem;
+            text-align: left;
+            border-bottom: 1px solid #4b5563;
+        }
+
+        th {
+            font-weight: bold;
+            color: var(--secondary-color);
+        }
+
+        @media (max-width: 768px) {
+            .trading-section, .market-data {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>NovaCrypto Exchange</h1>
+        </header>
+        <main>
+            <section class="card">
+                <div class="live-prices" id="live-prices"></div>
+            </section>
+            <section class="trading-section">
+                <div class="chart-container card">
+                    <h2>BTC/USDT Chart</h2>
+                    <div id="trading-chart"></div>
+                </div>
+                <div class="order-form card">
+                    <h2>Place Order</h2>
+                    <form id="order-form">
+                        <div class="form-group">
+                            <label for="order-type">Order Type</label>
+                            <select id="order-type" class="btn btn-primary">
+                                <option value="limit">Limit</option>
+                                <option value="market">Market</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="price">Price (USDT)</label>
+                            <input type="number" id="price" step="0.01" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="amount">Amount (BTC)</label>
+                            <input type="number" id="amount" step="0.00001" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="total">Total (USDT)</label>
+                            <input type="number" id="total" readonly>
+                        </div>
+                        <button type="submit" class="btn btn-success" id="buy-btn">Buy BTC</button>
+                        <button type="submit" class="btn btn-danger" id="sell-btn">Sell BTC</button>
+                    </form>
+                </div>
+            </section>
+            <section class="market-data">
+                <div class="order-book card">
+                    <h2>Order Book</h2>
+                    <table id="order-book">
+                        <thead>
+                            <tr>
+                                <th>Price (USDT)</th>
+                                <th>Amount (BTC)</th>
+                                <th>Total (USDT)</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+                <div class="recent-trades card">
+                    <h2>Recent Trades</h2>
+                    <table id="recent-trades">
+                        <thead>
+                            <tr>
+                                <th>Price (USDT)</th>
+                                <th>Amount (BTC)</th>
+                                <th>Time</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </section>
+        </main>
+    </div>
+    <script>
+        // Sample data
+        const cryptoPairs = ['BTC/USDT', 'ETH/USDT', 'ADA/USDT', 'DOT/USDT', 'XRP/USDT'];
+        let prices = {};
+        let orderBook = [];
+        let recentTrades = [];
+
+        // DOM elements
+        const livePricesContainer = document.getElementById('live-prices');
+        const orderBookTable = document.getElementById('order-book').querySelector('tbody');
+        const recentTradesTable = document.getElementById('recent-trades').querySelector('tbody');
+        const orderForm = document.getElementById('order-form');
+        const priceInput = document.getElementById('price');
+        const amountInput = document.getElementById('amount');
+        const totalInput = document.getElementById('total');
+        const buyBtn = document.getElementById('buy-btn');
+        const sellBtn = document.getElementById('sell-btn');
+
+        // Helper functions
+        function formatPrice(price) {
+            return parseFloat(price).toFixed(2);
+        }
+
+        function formatAmount(amount) {
+            return parseFloat(amount).toFixed(5);
+        }
+
+        function formatChange(change) {
+            return change > 0 ? `+${change.toFixed(2)}%` : `${change.toFixed(2)}%`;
+        }
+
+        function updateLivePrices() {
+            livePricesContainer.innerHTML = '';
+            cryptoPairs.forEach(pair => {
+                const price = prices[pair];
+                const priceItem = document.createElement('div');
+                priceItem.className = 'price-item';
+                priceItem.innerHTML = `
+                    <div class="price-symbol">${pair}</div>
+                    <div class="price-value">$${formatPrice(price.value)}</div>
+                    <div class="price-change ${price.change >= 0 ? 'positive' : 'negative'}">
+                        ${formatChange(price.change)}
+                    </div>
+                `;
+                livePricesContainer.appendChild(priceItem);
+            });
+        }
+
+        function updateOrderBook() {
+            orderBookTable.innerHTML = '';
+            orderBook.forEach(order => {
+                const row = orderBookTable.insertRow();
+                row.innerHTML = `
+                    <td>${formatPrice(order.price)}</td>
+                    <td>${formatAmount(order.amount)}</td>
+                    <td>${formatPrice(order.total)}</td>
+                `;
+            });
+        }
+
+        function updateRecentTrades() {
+            recentTradesTable.innerHTML = '';
+            recentTrades.forEach(trade => {
+                const row = recentTradesTable.insertRow();
+                row.innerHTML = `
+                    <td>${formatPrice(trade.price)}</td>
+                    <td>${formatAmount(trade.amount)}</td>
+                    <td>${trade.time}</td>
+                `;
+            });
+        }
+
+        function simulateMarketActivity() {
+            // Update prices
+            cryptoPairs.forEach(pair => {
+                const currentPrice = prices[pair]?.value || 50000;
+                const change = (Math.random() - 0.5) * 200;
+                prices[pair] = {
+                    value: currentPrice + change,
+                    change: (change / currentPrice) * 100
+                };
+            });
+
+            // Update order book
+            orderBook = Array.from({ length: 10 }, () => ({
+                price: 50000 + (Math.random() - 0.5) * 1000,
+                amount: Math.random() * 2,
+                total: 0
+            }));
+            orderBook.forEach(order => order.total = order.price * order.amount);
+            orderBook.sort((a, b) => b.price - a.price);
+
+            // Update recent trades
+            const newTrade = {
+                price: 50000 + (Math.random() - 0.5) * 1000,
+                amount: Math.random() * 2,
+                time: new Date().toLocaleTimeString()
+            };
+            recentTrades = [newTrade, ...recentTrades.slice(0, 9)];
+
+            updateLivePrices();
+            updateOrderBook();
+            updateRecentTrades();
+        }
+
+        // Event listeners
+        priceInput.addEventListener('input', () => {
+            const price = parseFloat(priceInput.value) || 0;
+            const amount = parseFloat(amountInput.value) || 0;
+            totalInput.value = (price * amount).toFixed(2);
+        });
+
+        amountInput.addEventListener('input', () => {
+            const price = parseFloat(priceInput.value) || 0;
+            const amount = parseFloat(amountInput.value) || 0;
+            totalInput.value = (price * amount).toFixed(2);
+        });
+
+        orderForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const orderType = document.getElementById('order-type').value;
+            const price = parseFloat(priceInput.value);
+            const amount = parseFloat(amountInput.value);
+            const total = parseFloat(totalInput.value);
+            const side = e.submitter === buyBtn ? 'buy' : 'sell';
+
+            alert(`${side.toUpperCase()} order placed:
+                Type: ${orderType}
+                Price: $${price.toFixed(2)}
+                Amount: ${amount.toFixed(5)} BTC
+                Total: $${total.toFixed(2)}`);
+        });
+
+        // Initialize the page
+        simulateMarketActivity();
+        setInterval(simulateMarketActivity, 5000);
+
+        // Simple chart representation (replace with a proper charting library in production)
+        const chartContext = document.getElementById('trading-chart').getContext('2d');
+        chartContext.fillStyle = '#22d3ee';
+        chartContext.strokeStyle = '#22d3ee';
+
+        function drawChart() {
+            const width = chartContext.canvas.width;
+            const height = chartContext.canvas.height;
+            const points = 100;
+            const data = Array.from({ length: points }, () => Math.random() * height);
+
+            chartContext.clearRect(0, 0, width, height);
+            chartContext.beginPath();
+            chartContext.moveTo(0, height - data[0]);
+
+            for (let i = 1; i < points; i++) {
+                const x = (width / points) * i;
+                const y = height - data[i];
+                chartContext.lineTo(x, y);
+            }
+
+            chartContext.stroke();
+
+            for (let i = 0; i < points; i++) {
+                const x = (width / points) * i;
+                const y = height - data[i];
+                chartContext.beginPath();
+                chartContext.arc(x, y, 1, 0, Math.PI * 2);
+                chartContext.fill();
+            }
+        }
+
+        drawChart();
+        setInterval(drawChart, 5000);
+    </script>
+</body>
+</html>

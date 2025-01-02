@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CryptoNova Exchange</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>CryptoNova</h1>
+            <nav>
+                <ul>
+                    <li><a href="#" class="active">Exchange</a></li>
+                    <li><a href="#">Portfolio</a></li>
+                    <li><a href="#">News</a></li>
+                    <li><a href="#">Settings</a></li>
+                </ul>
+            </nav>
+        </header>
+        
+        <main>
+            <section id="live-prices">
+                <h2>Live Prices</h2>
+                <div class="price-ticker" id="price-ticker"></div>
+            </section>
+
+            <section id="trading-section">
+                <div class="card" id="chart-card">
+                    <h3>BTC/USDT</h3>
+                    <div id="chart-container">
+                        <canvas id="crypto-chart"></canvas>
+                    </div>
+                    <div id="chart-filters">
+                        <button class="time-filter active" data-time="1h">1H</button>
+                        <button class="time-filter" data-time="1d">1D</button>
+                        <button class="time-filter" data-time="1w">1W</button>
+                        <button class="time-filter" data-time="1m">1M</button>
+                        <button class="time-filter" data-time="1y">1Y</button>
+                    </div>
+                </div>
+                <div class="card" id="order-card">
+                    <h3>Place Order</h3>
+                    <div id="trade-options">
+                        <button class="trade-type active" data-type="limit">Limit</button>
+                        <button class="trade-type" data-type="market">Market</button>
+                        <button class="trade-type" data-type="stop-limit">Stop Limit</button>
+                        <button class="trade-type" data-type="stop-market">Stop Market</button>
+                    </div>
+                    <form id="order-form">
+                        <div class="form-group">
+                            <label for="price">Price (USDT)</label>
+                            <input type="number" id="price" name="price" step="0.01" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="amount">Amount (BTC)</label>
+                            <input type="number" id="amount" name="amount" step="0.00001" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="total">Total (USDT)</label>
+                            <input type="number" id="total" name="total" step="0.01" readonly>
+                        </div>
+                        <div id="trade-actions">
+                            <button type="submit" id="buy-btn">Buy BTC</button>
+                            <button type="submit" id="sell-btn">Sell BTC</button>
+                        </div>
+                    </form>
+                </div>
+            </section>
+
+            <section id="market-data">
+                <div class="card" id="order-book">
+                    <h3>Order Book</h3>
+                    <div class="table-container">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Price(USDT)</th>
+                                    <th>Amount(BTC)</th>
+                                    <th>Total(USDT)</th>
+                                </tr>
+                            </thead>
+                            <tbody id="order-body"></tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="card" id="recent-trades">
+                    <h3>Recent Trades</h3>
+                    <div class="table-container">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Time</th>
+                                    <th>Price(USDT)</th>
+                                    <th>Amount(BTC)</th>
+                                </tr>
+                            </thead>
+                            <tbody id="trades-body"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <section id="market-news">
+                <h2>Market News</h2>
+                <div id="news-container"></div>
+            </section>
+        </main>
+    </div>
+    <script src="main.js"></script>
+</body>
+</html>
+

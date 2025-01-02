@@ -352,3 +352,71 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
+document.addEventListener('DOMContentLoaded', function() {
+    // Typewriter effect
+    const typewriterElement = document.querySelector('.typewriter');
+    const words = ['Extraordinary NFTs', 'Digital Art', 'Rare Collectibles'];
+    let wordIndex = 0;
+    let charIndex = 0;
+  
+    function typeWriter() {
+      if (charIndex < words[wordIndex].length) {
+        typewriterElement.textContent += words[wordIndex].charAt(charIndex);
+        charIndex++;
+        setTimeout(typeWriter, 100);
+      } else {
+        setTimeout(eraseText, 2000);
+      }
+    }
+  
+    function eraseText() {
+      if (charIndex > 0) {
+        typewriterElement.textContent = words[wordIndex].substring(0, charIndex - 1);
+        charIndex--;
+        setTimeout(eraseText, 50);
+      } else {
+        wordIndex = (wordIndex + 1) % words.length;
+        setTimeout(typeWriter, 500);
+      }
+    }
+  
+    typeWriter();
+  
+    // Particle background
+    particlesJS('particles-js', {
+      particles: {
+        number: { value: 80, density: { enable: true, value_area: 800 } },
+        color: { value: '#ffffff' },
+        shape: { type: 'circle' },
+        opacity: { value: 0.5, random: true },
+        size: { value: 3, random: true },
+        move: { enable: true, speed: 2, direction: 'none', random: true, out_mode: 'out' }
+      },
+      interactivity: {
+        detect_on: 'canvas',
+        events: { onhover: { enable: true, mode: 'repulse' }, onclick: { enable: true, mode: 'push' } },
+        modes: { repulse: { distance: 100, duration: 0.4 }, push: { particles_nb: 4 } }
+      }
+    });
+  
+    // Animate NFT cards on scroll
+    const nftCards = document.querySelectorAll('.nft-card');
+    const observerOptions = {
+      threshold: 0.5,
+      rootMargin: '0px 0px -100px 0px'
+    };
+  
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.animationPlayState = 'running';
+          observer.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+  
+    nftCards.forEach(card => {
+      card.style.animationPlayState = 'paused';
+      observer.observe(card);
+    });
+  });
