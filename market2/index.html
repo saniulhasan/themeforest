@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Latest Crypto Market</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <header>
+        <h1>Latest Crypto Market</h1>
+    </header>
+    <main>
+        <section id="daily-index">
+            <h2>Daily Cryptocurrency Index</h2>
+            <div class="chart-container">
+                <canvas id="cryptoChart"></canvas>
+            </div>
+        </section>
+        <section id="favorite-coins">
+            <h2>Favorite Coins</h2>
+            <div class="table-container">
+                <table id="coinTable">
+                    <thead>
+                        <tr>
+                            <th>Pairs</th>
+                            <th>Coin</th>
+                            <th>Last Price</th>
+                            <th>Change (24H)</th>
+                            <th>High (24H)</th>
+                            <th>Low (24h)</th>
+                            <th>Volume (24h)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Data will be inserted here by JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <p>Data updated every 5 minutes. Last update: <span id="lastUpdate"></span></p>
+    </footer>
+    <script src="main.js"></script>
+</body>
+</html>
+

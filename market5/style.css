@@ -1,0 +1,167 @@
+:root {
+    --bg-primary: #0a0e17;
+    --bg-secondary: #1a1f2d;
+    --text-primary: #ffffff;
+    --text-secondary: #a0a0a0;
+    --accent-green: #4CAF50;
+    --accent-blue: #2196F3;
+    --border-color: #2a2f3a;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    line-height: 1.6;
+}
+
+.main-nav {
+    display: flex;
+    align-items: center;
+    padding: 1rem 2rem;
+    background-color: var(--bg-secondary);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--accent-green);
+}
+
+.logo img {
+    width: 24px;
+    height: 24px;
+    margin-right: 0.5rem;
+}
+
+.nav-links {
+    display: flex;
+    gap: 2rem;
+    margin-left: 3rem;
+}
+
+.nav-links a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 0.9rem;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+}
+
+.nav-links a.active {
+    color: var(--text-primary);
+}
+
+.nav-right {
+    margin-left: auto;
+    display: flex;
+    gap: 1rem;
+}
+
+.nav-right button {
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    cursor: pointer;
+    font-size: 1.2rem;
+}
+
+main {
+    padding: 1rem 2rem;
+}
+
+.controls {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+}
+
+.tabs, .filters {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.tab, .filter-btn {
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.tab.active, .filter-btn.active {
+    background-color: var(--accent-blue);
+    color: var(--text-primary);
+}
+
+.market-table-container {
+    overflow-x: auto;
+}
+
+.market-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9rem;
+}
+
+.market-table th,
+.market-table td {
+    padding: 1rem;
+    text-align: right;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.market-table th {
+    background-color: var(--bg-secondary);
+    color: var(--text-secondary);
+    font-weight: normal;
+}
+
+.market-table th:first-child,
+.market-table td:first-child {
+    text-align: left;
+}
+
+.positive {
+    color: var(--accent-green);
+}
+
+.negative {
+    color: #f44336;
+}
+
+.ticker-cell {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.ticker-cell img {
+    width: 24px;
+    height: 24px;
+}
+
+.exchange-cell {
+    color: var(--accent-blue);
+}
+
+@media (max-width: 1024px) {
+    .nav-links {
+        display: none;
+    }
+    
+    .market-table th,
+    .market-table td {
+        padding: 0.75rem 0.5rem;
+    }
+}

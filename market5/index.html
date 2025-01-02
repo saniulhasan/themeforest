@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crypto Market Screener</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav class="main-nav">
+        <div class="logo">
+            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%234CAF50' stroke-width='2'%3E%3Cpath d='M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5'/%3E%3C/svg%3E" alt="Logo">
+            CRYPO
+        </div>
+        <div class="nav-links">
+            <a href="#" class="active">Landing Page</a>
+            <a href="#">Exchange</a>
+            <a href="#">Markets</a>
+            <a href="#">Dashboard</a>
+            <a href="#">Others</a>
+        </div>
+        <div class="nav-right">
+            <button class="notification-btn">🔔</button>
+            <button class="profile-btn">👤</button>
+        </div>
+    </nav>
+
+    <main>
+        <div class="controls">
+            <div class="tabs">
+                <button class="tab active">Overview</button>
+                <button class="tab">Chart</button>
+            </div>
+            <div class="filters">
+                <button class="filter-btn">General</button>
+                <button class="filter-btn active">Filters</button>
+            </div>
+        </div>
+
+        <div class="market-table-container">
+            <table class="market-table">
+                <thead>
+                    <tr>
+                        <th>TICKER</th>
+                        <th>PRICE</th>
+                        <th>CHG %</th>
+                        <th>CHG</th>
+                        <th>HIGH</th>
+                        <th>LOW</th>
+                        <th>VOL</th>
+                        <th>VOL 24H IN USD</th>
+                        <th>VOL 24H CHG %</th>
+                        <th>TECHNICAL RATING</th>
+                        <th>EXCHANGE</th>
+                    </tr>
+                </thead>
+                <tbody id="market-data">
+                    <!-- Data will be populated by JavaScript -->
+                </tbody>
+            </table>
+        </div>
+    </main>
+    <script src="main.js"></script>
+</body>
+</html>
